@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
@@ -28,7 +27,8 @@ const Homepage = () => {
   useEffect(() => {
     const filtered = Object.values(craftsData).filter(craft =>
       craft.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      craft.description.toLowerCase().includes(searchTerm.toLowerCase())
+      craft.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      craft.states.some(state => state.toLowerCase().includes(searchTerm.toLowerCase()))
     );
     setFilteredCrafts(filtered);
   }, [searchTerm]);
@@ -45,51 +45,60 @@ const Homepage = () => {
   if (!user) return null;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-saffron-50 via-white to-emerald-50">
       <Navigation />
       
-      <section className="py-16 bg-white">
+      {/* Hero Section */}
+      <section className="relative py-20 mandala-bg">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
+          <div className="text-center mb-12 animate-fade-in">
             <div className="flex items-center justify-between mb-6">
               <div className="flex items-center gap-3">
-                <User className="h-5 w-5 text-orange-600" />
-                <span className="text-gray-700">Welcome, {user.username}</span>
+                <User className="h-6 w-6 text-saffron-600" />
+                <span className="font-devanagari text-lg text-gray-700">
+                  स्वागत / Welcome, {user.username}
+                </span>
               </div>
               <Button 
                 onClick={handleLogout}
                 variant="outline"
-                className="border-gray-300"
+                className="border-saffron-300 text-saffron-600 hover:bg-saffron-50"
               >
                 <LogOut className="h-4 w-4 mr-2" />
                 Logout
               </Button>
             </div>
             
-            <h1 className="text-5xl font-bold text-orange-600 mb-4">
-              🏺 Hasthakala Bharat
+            <h1 className="font-cinzel text-5xl md:text-6xl font-bold text-gradient mb-6">
+              हस्तकला भारत
             </h1>
-            <p className="text-xl text-gray-700 max-w-2xl mx-auto">
-              Discover the beauty of Indian handicrafts. From pottery to woodwork, 
-              explore traditions passed down through generations.
+            <h2 className="font-garamond text-3xl md:text-4xl text-saffron-700 mb-4">
+              Hasthakala Bharat
+            </h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto font-devanagari leading-relaxed">
+              Discover the timeless beauty of Indian handicrafts. From ancient pottery traditions 
+              to intricate woodwork, explore the rich heritage that has been passed down through 
+              generations of skilled artisans.
             </p>
           </div>
 
+          {/* Search Bar */}
           <div className="max-w-md mx-auto mb-12">
             <div className="relative">
-              <Search className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+              <Search className="absolute left-3 top-3 h-5 w-5 text-saffron-500" />
               <Input
                 type="text"
-                placeholder="Search crafts..."
+                placeholder="Search crafts, states, or materials..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 border-gray-300"
+                className="pl-10 py-6 text-lg border-saffron-200 focus:border-saffron-500"
               />
             </div>
           </div>
         </div>
       </section>
 
+      {/* Craft Categories */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
@@ -146,29 +155,6 @@ const Homepage = () => {
               </p>
             </div>
           )}
-        </div>
-      </section>
-
-      <section className="py-16 bg-orange-50">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-orange-600 mb-2">5000+</div>
-              <div className="text-gray-700">Artisan Families</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-green-600 mb-2">28</div>
-              <div className="text-gray-700">States Covered</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-orange-600 mb-2">3000+</div>
-              <div className="text-gray-700">Years of Tradition</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-green-600 mb-2">100+</div>
-              <div className="text-gray-700">Craft Varieties</div>
-            </div>
-          </div>
         </div>
       </section>
 

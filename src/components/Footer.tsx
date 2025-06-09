@@ -1,83 +1,11 @@
-
 import React from 'react';
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react';
 
 const Footer = () => {
-  const states = [
-    'Andhra Pradesh', 'Assam', 'Bihar', 'Gujarat', 'Haryana', 'Karnataka', 
-    'Kerala', 'Maharashtra', 'Punjab', 'Rajasthan', 'Tamil Nadu', 'Uttar Pradesh', 
-    'West Bengal', 'All States'
-  ];
-
-  const materials = [
-    'Clay', 'Wood', 'Metal', 'Bamboo', 'Paper', 'Cotton', 'Silk', 'Stone', 'Glass', 'All Materials'
-  ];
-
   return (
-    <footer className="bg-gradient-to-r from-saffron-800 to-emerald-800 text-white">
-      {/* Filter Section */}
-      <div className="container mx-auto px-4 py-12">
-        <Card className="bg-white/10 backdrop-blur-md border-white/20">
-          <CardContent className="p-6">
-            <h3 className="font-garamond text-2xl font-bold text-center mb-6">
-              Discover Crafts by Region & Material
-            </h3>
-            
-            <div className="grid md:grid-cols-3 gap-4">
-              <div>
-                <label className="block text-sm font-medium mb-2 font-devanagari">
-                  Filter by State
-                </label>
-                <Select>
-                  <SelectTrigger className="bg-white/20 border-white/30 text-white">
-                    <SelectValue placeholder="Select a state" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {states.map((state) => (
-                      <SelectItem key={state} value={state.toLowerCase()}>
-                        {state}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium mb-2 font-devanagari">
-                  Filter by Material
-                </label>
-                <Select>
-                  <SelectTrigger className="bg-white/20 border-white/30 text-white">
-                    <SelectValue placeholder="Select material" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {materials.map((material) => (
-                      <SelectItem key={material} value={material.toLowerCase()}>
-                        {material}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium mb-2 font-devanagari">
-                  Search Crafts
-                </label>
-                <Input 
-                  placeholder="Search by craft name..."
-                  className="bg-white/20 border-white/30 text-white placeholder:text-white/70"
-                />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
+    <footer className="bg-gradient-to-r from-[#B34700] to-[#003300] text-white">
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">

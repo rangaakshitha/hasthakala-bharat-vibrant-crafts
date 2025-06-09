@@ -67,9 +67,16 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-orange-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-orange-600">🏺 Hasthakala Bharat</h1>
-          <p className="text-gray-600">Celebrating India's Handicraft Heritage</p>
+        <div className="text-center mb-8 animate-fade-in">
+          <h1 className="font-cinzel text-4xl font-bold text-gradient mb-2">
+            हस्तकला भारत
+          </h1>
+          <h2 className="font-garamond text-2xl text-saffron-600 mb-2">
+            Hasthakala Bharat
+          </h2>
+          <p className="text-gray-600 font-devanagari">
+            Celebrating India's Rich Handicraft Heritage
+          </p>
         </div>
 
         <Card>
