@@ -1,95 +1,149 @@
-
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import { Eye, EyeOff } from 'lucide-react';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const [errors, setErrors] = useState<{ username?: string; password?: string }>({});
+
   const navigate = useNavigate();
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validate = () => {
+    const newErrors: { username?: string; password?: string } = {};
+    if (username.trim().length < 3) newErrors.username = "Username must be at least 3 characters.";
+    if (password.length < 6) newErrors.password = "Password must be at least 6 characters.";
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (username.length >= 3 && password.length >= 6) {
-      toast({
-        title: "Welcome to Hasthakala Bharat",
-        description: "Login successful!",
+    if (!validate()) return;
+
+    try {
+      const res = await fetch('http://localhost:5000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password }),
       });
-      
-      localStorage.setItem('hasthakala_user', JSON.stringify({ username }));
-      navigate('/home');
-    } else {
+
+      const data = await res.json();
+
+      if (res.ok) {
+        toast({
+          title: "Welcome to Hasthakala Bharat",
+          description: "Login successful!",
+        });
+
+        // Save token for authenticated requests
+        localStorage.setItem('hasthakala_token', data.token);
+        localStorage.setItem('hasthakala_user', JSON.stringify({ username }));
+
+        navigate('/homepage');
+      } else {
+        toast({
+          title: "Login Failed",
+          description: data.error || "Invalid username or password.",
+          variant: 'destructive',
+        });
+      }
+    } catch (error) {
       toast({
-        title: "Error",
-        description: "Username must be 3+ chars, password 6+ chars",
-        variant: "destructive",
+        title: "Network Error",
+        description: "Could not connect to server.",
+        variant: 'destructive',
       });
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-orange-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-orange-600 mb-2">
-            🏺 Hasthakala Bharat
-          </h1>
-          <p className="text-gray-600">
-            Celebrating India's Handicraft Heritage
-          </p>
+          <h1 className="text-4xl font-bold text-orange-600">🏺 Hasthakala Bharat</h1>
+          <p className="text-gray-600">Celebrating India's Handicraft Heritage</p>
         </div>
 
-        <Card className="simple-card">
+        <Card>
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl text-gray-800">
-              Welcome Back
-            </CardTitle>
+            <CardTitle className="text-2xl text-gray-800">Login to Continue</CardTitle>
           </CardHeader>
-          
           <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Username
-                </label>
+                <label className="block text-sm font-medium text-gray-700">Username</label>
                 <Input
                   type="text"
-                  placeholder="Enter username"
+                  placeholder="Enter your username"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="border-gray-300"
                 />
+                {errors.username && (
+                  <p className="text-sm text-red-600 mt-1">{errors.username}</p>
+                )}
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Password
-                </label>
-                <Input
-                  type="password"
-                  placeholder="Enter password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="border-gray-300"
-                />
+                <label className="block text-sm font-medium text-gray-700">Password</label>
+                <div className="relative">
+                  <Input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-2 top-2 text-gray-500"
+                    aria-label="Toggle password visibility"
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+                {errors.password && (
+                  <p className="text-sm text-red-600 mt-1">{errors.password}</p>
+                )}
               </div>
 
-              <Button 
-                type="submit" 
+              <div className="flex items-center justify-between">
+                <label className="flex items-center space-x-2 text-sm text-gray-700">
+                  <input
+                    type="checkbox"
+                    checked={rememberMe}
+                    onChange={(e) => setRememberMe(e.target.checked)}
+                    className="accent-orange-500"
+                  />
+                  <span>Remember me</span>
+                </label>
+              
+              </div>
+
+              <Button
+                type="submit"
                 className="w-full bg-orange-500 hover:bg-orange-600 text-white"
               >
                 Login
               </Button>
-            </form>
 
-            <div className="mt-4 text-center text-sm text-gray-600">
-              <p>Demo: Any username (3+ chars) & password (6+ chars)</p>
-            </div>
+              <div className="text-center text-sm mt-4">
+                <p>
+                  Don't have an account?{' '}
+                  <Link to="/create-account" className="text-orange-600 hover:underline">
+                    Create one
+                  </Link>
+                </p>
+              </div>
+            </form>
           </CardContent>
         </Card>
       </div>

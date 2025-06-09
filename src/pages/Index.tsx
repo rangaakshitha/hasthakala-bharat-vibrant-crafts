@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -6,9 +5,9 @@ const Index = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const userData = localStorage.getItem('hasthakala_user');
-    if (userData) {
-      navigate('/home');
+    const token = localStorage.getItem('hasthakala_token');
+    if (token) {
+      navigate('/homepage');
     } else {
       navigate('/login');
     }
