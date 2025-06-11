@@ -1,198 +1,272 @@
-export interface CraftData {
-  id: string;
-  name: string;
-  description: string;
+export interface SubCategory {
   image: string;
-  artisanImage: string;
-  states: string[];
+  title: string;
+  description: string;
   history: string;
   materials: string[];
   process: string[];
   culturalValue: string;
+}
+export interface CraftData {
+  id: string;
+  name: string;
+  image: string;
+  description: string;
+  states: string[];
   icon: string;
+  subcategories: SubCategory[];
 }
 
 export const craftsData: Record<string, CraftData> = {
   pottery: {
     id: "pottery",
     name: "Clay & Pottery",
-    description: "Ancient art of shaping clay into beautiful vessels and sculptures",
     image: "https://img.freepik.com/premium-photo/hands-woman-working-with-clay-pottery-wheel-workshop-making-vase_508626-230.jpg",
-    artisanImage: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&h=400&fit=crop",
     states: ["Rajasthan", "Gujarat", "West Bengal", "Uttar Pradesh", "Haryana", "Punjab", "Tamil Nadu"],
-    history: "Pottery in India dates back to the Indus Valley Civilization (3300-1300 BCE). The ancient art form has been passed down through generations, with each region developing its unique style and techniques. From the blue pottery of Jaipur to the terracotta work of Bengal, Indian pottery reflects the diverse cultural heritage of the subcontinent.",
-    materials: [
-      "Clay (various types depending on region)",
-      "Water for molding",
-      "Potter's wheel",
-      "Natural pigments and glazes",
-      "Kiln for firing",
-      "Brushes for painting",
-      "Traditional tools like ribs and wires"
-    ],
-    process: [
-      "Selection and preparation of clay",
-      "Kneading and removing air bubbles",
-      "Shaping on the potter's wheel or by hand",
-      "First drying in shade",
-      "First firing (bisque firing)",
-      "Glazing and painting with natural colors",
-      "Second firing for final finish",
-      "Quality checking and finishing touches"
-    ],
-    culturalValue: "Pottery holds deep spiritual significance in Hindu traditions, with clay pots used in religious ceremonies and festivals. The craft represents the cycle of life - earth to earth. It provides livelihood to thousands of artisan families and preserves ancient techniques that connect us to our ancestors.",
-    icon: "🏺"
+    icon: "🏺",
+    description: 'Artisanal pottery crafted from natural clay, showcasing traditional shapes and earthy aesthetics.',
+    subcategories: [
+      {
+        image: 'https://media.istockphoto.com/id/1135361606/photo/famous-terracotta-handicrafts-of-bishnupur-on-display-for-sale.jpg?s=170667a&w=0&k=20&c=zsfcu-upT-ctMQvUMVA3yk0pQuNyzTsxesHkNuIsXNI=',
+        title: 'Terracotta Pottery',
+        description: 'Terracotta pottery is handcrafted from natural clay and fired at low temperatures, giving it a warm, rustic appeal. It is widely used for decorative and functional purposes across India.',
+        history: 'Blue Pottery originated from Persia and was brought to India during the Mughal era...',
+  materials: ['Quartz', 'Multani mitti', 'Katira Gond'],
+  process: ['Mix raw materials', 'Shape the pottery', 'Glaze with blue dye', 'Fire in kiln'],
+  culturalValue: 'Represents a fusion of Persian and Indian art traditions...'
+      },
+      {
+        image: 'https://c9admin.cottage9.com/uploads/2322/image_2023_01_20T09_08_11_450Z-1024x723.png',
+        title: 'Blue Pottery',
+        description: 'Blue Pottery is a unique Jaipur craft known for its vibrant cobalt blue glaze and intricate floral designs. Made without clay, it blends Persian art with Indian tradition.',
+        history: 'Blue Pottery originated from Persia and was brought to India during the Mughal era...',
+  materials: ['Quartz', 'Multani mitti', 'Katira Gond'],
+  process: ['Mix raw materials', 'Shape the pottery', 'Glaze with blue dye', 'Fire in kiln'],
+  culturalValue: 'Represents a fusion of Persian and Indian art traditions...'
+      },
+      {
+        image: 'https://www.khurjapotteryhub.com/wp-content/uploads/2025/04/flower-vases.webp',
+        title: 'Khurja Pottery',
+        description: 'Khurja pottery is a centuries-old, GI-protected craft from Uttar Pradesh, known for its cream-background ceramics hand-painted with vivid blue, brown, and floral patterns. It combines local clay with quartz and feldspar to create durable and decorative kitchenware and decor.',
+        history: 'Blue Pottery originated from Persia and was brought to India during the Mughal era...',
+  materials: ['Quartz', 'Multani mitti', 'Katira Gond'],
+  process: ['Mix raw materials', 'Shape the pottery', 'Glaze with blue dye', 'Fire in kiln'],
+  culturalValue: 'Represents a fusion of Persian and Indian art traditions...'
+      },
+      {
+        image: 'https://www.orangeskies.in/cdn/shop/files/DSC06948.jpg?v=1723744755&width=1946',
+        title: 'Black Pottery',
+        description: 'Black pottery is a traditional Indian craft known for its striking dark finish, achieved by firing clay in a smoky, low-oxygen environment. Styles like Nizamabad’s silver-etched designs and Manipur’s Longpi stoneware reflect deep cultural and tribal heritage.',
+        history: 'Blue Pottery originated from Persia and was brought to India during the Mughal era...',
+  materials: ['Quartz', 'Multani mitti', 'Katira Gond'],
+  process: ['Mix raw materials', 'Shape the pottery', 'Glaze with blue dye', 'Fire in kiln'],
+  culturalValue: 'Represents a fusion of Persian and Indian art traditions...'
+      },
+    ]
   },
   woodcraft: {
     id: "woodcraft",
     name: "Woodcraft",
-    description: "Intricate carving and crafting of wood into beautiful art pieces",
     image: "https://th.bing.com/th/id/R.ae9de228913de6eaa5d047df1119779e?rik=97cu25mCL7pM5A&riu=http%3a%2f%2fgogalini.com%2fimages%2fprofile_images%2fp107%2fwoodcraft-voskakis_p107_55d849736d0b7.jpg&ehk=JOOo4MIE6ATom7vzDvhOZRD%2bA8hN8UAzEGjUOFvOgtY%3d&risl=&pid=ImgRaw&r=0",
-    artisanImage: "https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=600&h=400&fit=crop",
     states: ["Kashmir", "Rajasthan", "Karnataka", "Kerala", "Uttar Pradesh", "Gujarat", "Assam"],
-    history: "Wood carving in India has a history spanning over 3000 years. From the intricate work on temple architecture to decorative household items, woodcraft has been an integral part of Indian culture. The Sandalwood carvings of Karnataka and Walnut wood work of Kashmir are world-renowned for their exquisite craftsmanship.",
-    materials: [
-      "Various woods (Sandalwood, Rosewood, Teak, Walnut)",
-      "Carving tools and chisels",
-      "Sandpaper of different grits",
-      "Natural wood stains and polishes",
-      "Measuring tools and templates",
-      "Hand saws and power tools",
-      "Protective gear for artisans"
-    ],
-    process: [
-      "Selection of appropriate wood type",
-      "Seasoning and drying of wood",
-      "Design sketching and template creation",
-      "Rough cutting and shaping",
-      "Detailed carving with fine tools",
-      "Sanding and smoothing",
-      "Application of stains and finishes",
-      "Final polishing and quality inspection"
-    ],
-    culturalValue: "Woodcraft is deeply embedded in Indian architecture and religious practices. Temple carvings tell stories of gods and goddesses, while household items like furniture and decorative pieces reflect regional artistic traditions. The craft supports rural communities and keeps alive the ancient techniques of wood working.",
-    icon: "🪵"
+    icon: "🪵",
+    description: 'Intricately carved wooden artifacts made by skilled artisans, blending utility with heritage.',
+    subcategories: [
+      {
+        image: 'https://res.cloudinary.com/jerrick/image/upload/d_642250b563292b35f27461a7.png,f_jpg,fl_progressive,q_auto,w_1024/6765a320ce29c0001dcd0e8c.jpg',
+        title: 'Saharanpur wood carving',
+        description: 'Saharanpur wood carving, rooted in Mughal-era craft traditions, is renowned for intricate fret (‘jali’) work, vine-leaf motifs, and brass inlay on fine woods like sheesham and teak. Artisans handcraft furniture, décor, and religious pieces earning the city its status as India’s ‘wood-carving capital.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      },
+      {
+        image: 'https://s7ap1.scene7.com/is/image/incredibleindia/walnut-wood-carvings-craft-hero?qlt=82&ts=1726641491579',
+        title: 'Kashmiri walnut wood carving',
+        description: 'Kashmiri walnut wood carving is a fine art form crafted from the region’s native walnut trees. Known for its deep relief work and delicate detailing, it decorates furniture, jewelry boxes, and wall panels with floral and paisley patterns.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      },
+      {
+        image: 'https://www.gitagged.com/wp-content/uploads/2017/12/Bastar-Art-Online-GI-TAGGED-1.jpg',
+        title: 'Bastar wooden craft ',
+        description: 'Bastar wooden craft from Chhattisgarh is a GI‑protected tribal art form dating back to the 10th century, carved by hand from local woods like teak, shisham, sal, and kikar. It vividly illustrates tribal mythology and everyday life—dancing figures, ritual pillars, masks, furniture—through deep relief motifs and raw, rustic finishes.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      },
+      {
+        image: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Ten_Playing_Cards_%28Ganjifa%29_LACMA_M.2001.210.4.1-.10.jpg',
+        title: 'Ganjifa wooden craft',
+        description: 'Ganjifa is a historic hand‑painted wooden card game originating in Persia and flourishing in regions like Sawantwadi (Maharashtra) and Mysore (Karnataka). These circular cards feature vivid colours and mythological or courtly scenes, with sets like Dashavatara and Rashi reflecting local iconography.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      },
+      {
+        image: 'https://lh3.googleusercontent.com/ci/AL18g_S8HZ7pumB5AvYFT0AzuRRkJFLE9Y1lgOWIFP665UKfZqlS-SCsIE60NAkskHI5A-UQWW_ulorr',
+        title: 'Sandook boxes',
+        description: 'Sandook boxes are traditional Rajasthani wooden chests, richly decorated with carvings, meenakari or brass fittings, and vibrant motifs. Used historically to store valuables, clothing, or linens, they blend functionality with exquisite artistry and often appear in bridal trousseaus or royal interiors',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      },
+    ]
   },
   metalcraft: {
     id: "metalcraft",
     name: "Metal Craft",
-    description: "Traditional metalworking creating utensils, jewelry, and decorative items",
     image: "https://spiritofindia.co.in/wp-content/uploads/2022/01/History-of-Bidri-Craft-1536x1025.jpg",
-    artisanImage: "https://images.unsplash.com/photo-1551079711-2986943402cb?w=600&h=400&fit=crop",
     states: ["Rajasthan", "Uttar Pradesh", "Karnataka", "Tamil Nadu", "West Bengal", "Maharashtra", "Orissa"],
-    history: "Metal craft in India dates back to the Bronze Age with the famous Dancing Girl of Harappa being a prime example. The tradition continued through various dynasties, with each region specializing in different metals and techniques. Bidriware from Karnataka and brass work from Rajasthan showcase the diversity and skill of Indian metal artisans.",
-    materials: [
-      "Various metals (Brass, Bronze, Copper, Silver, Iron)",
-      "Hammers and anvils",
-      "Furnace and bellows",
-      "Acids for etching",
-      "Wire brushes and files",
-      "Measuring and marking tools",
-      "Polishing compounds and cloths"
-    ],
-    process: [
-      "Metal selection and preparation",
-      "Heating and shaping on anvil",
-      "Hammering and forming techniques",
-      "Detailed engraving and etching",
-      "Inlay work with other metals",
-      "Polishing and finishing",
-      "Quality testing and inspection",
-      "Final cleaning and packaging"
-    ],
-    culturalValue: "Metal craft holds immense religious and cultural significance in India. From temple bells to ceremonial vessels, metal items are integral to Hindu rituals. The craft represents prosperity and durability, with many families passing down metal heirlooms through generations. It provides livelihood to skilled artisans and preserves metallurgical knowledge.",
-    icon: "⚱"
+    icon: "⚱",
+    description: 'Elegant metal crafts forged using age-old techniques, often used in decor and rituals.',
+    subcategories: [
+      {
+        image: 'https://cdn.shopify.com/s/files/1/0503/5442/1920/files/BRONZE_20.png?v=1723022454',
+        title: 'Thatheras metal craft',
+        description: 'Thatheras’ metal craft is an age-old Punjabi tradition of hand-beating brass, copper, and kansa into utensils and decorative ware. Honoured by UNESCO as an Intangible Cultural Heritage since 2014, each piece is forged, shaped, and polished using ancestral techniques passed down through generations.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      },
+      {
+        image: 'https://lsmedia.linker-cdn.net/282256/2021/7101757.jpeg?width=1200&height=1125',
+        title: 'Dhokra',
+        description: 'Dhokra is a 4,000+ year old tribal metalworking tradition, using the ancient lost-wax casting technique to create enchanting brass or bronze figurines, jewelry, and utility items. Celebrated for its primitive simplicity and rustic charm, motifs often depict animals, tribal deities, or daily life scenes.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      },
+      {
+        image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Bidriware_hookah_base_1750-1800.jpg/640px-Bidriware_hookah_base_1750-1800.jpg',
+        title: 'Bidriware',
+        description: 'Bidriware is a 14th-century metal craft from Bidar, Karnataka, featuring a blackened brass and zinc base inlaid with gleaming silver or occasionally gold. Each piece showcases exquisite floral, geometric, and figurative motifs, created through freehand engraving and a unique soil-based oxidation process.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      },
+      {
+        image: 'https://ptal.in/cdn/shop/files/69_b3513984-9016-48a6-8235-1a0ac40204ef.png?v=1719999994',
+        title: 'Kansa Utensils',
+        description: 'Kansa utensils, crafted from a traditional bronze alloy of copper and tin, have been used in Indian households for centuries. Revered in Ayurveda for their antimicrobial and alkalizing properties, they combine health benefits with timeless elegance.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      },
+      {
+        image: 'https://www.zineart.in/images/trk3.webp',
+        title: 'Tarakasi',
+        description: 'Tarakasi is an intricate silver filigree art from Cuttack, Odisha, where artisans twist fine silver wires into lace-like designs for jewelry, idols, and decorative pieces. With over 500 years of tradition, it reflects refined craftsmanship and cultural elegance.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      },
+      {
+        image: 'https://i.pinimg.com/474x/01/9c/b7/019cb7f1060568586c0a0ae5ebd92b92.jpg',
+        title: 'Brass ware',
+        description: 'Brass ware, traditionally known as ‘Pital’ ware, blends copper and zinc into functional and decorative utensils—like plates, bowls, lamps, and temple items—handcrafted in hubs like Mirzapur (UP) and Rewari (Haryana). Besides their enduring shine and durability, these vessels are prized in Ayurveda for their antimicrobial properties and ability to enhance food flavor.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      }
+    ]
   },
   bamboo: {
     id: "bamboo",
-    name: "Bamboo Craft",
-    description: "Eco-friendly craft using bamboo to create furniture and decorative items",
+    name: "Bamboo & Cane",
     image: "https://cdn.pixelbin.io/v2/patient-paper-41f385/original/Craft_Images/Bamboo_Craft/Bamboo_Craft_1(1).jpg",
-    artisanImage: "https://images.unsplash.com/photo-1566737236500-c8ac43014a8e?w=600&h=400&fit=crop",
     states: ["Assam", "West Bengal", "Tripura", "Karnataka", "Kerala", "Manipur", "Meghalaya"],
-    history: "Bamboo craft has been practiced in India for over 4000 years, especially in the northeastern states where bamboo grows abundantly. The craft has deep roots in tribal communities who have used bamboo for everything from homes to musical instruments. Today, bamboo craft is recognized globally for its eco-friendly nature and artistic value.",
-    materials: [
-      "Various bamboo species",
-      "Sharp cutting tools and knives",
-      "Measuring scales and rulers",
-      "Natural dyes and colors",
-      "Binding materials (cane, rope)",
-      "Sandpaper for smoothing",
-      "Protective coatings and varnish"
-    ],
-    process: [
-      "Selection of mature bamboo",
-      "Cutting and seasoning",
-      "Splitting into required sizes",
-      "Shaping and bending techniques",
-      "Weaving and joining methods",
-      "Smoothing and finishing",
-      "Application of natural colors",
-      "Final inspection and quality check"
-    ],
-    culturalValue: "Bamboo craft represents sustainability and harmony with nature in Indian philosophy. It's considered auspicious in many cultures and is used in religious ceremonies. The craft supports tribal communities and promotes eco-friendly living. Bamboo items symbolize flexibility, strength, and growth in Indian culture.",
-    icon: "🎋"
+    icon: "🎋",
+    description: 'Eco-friendly crafts woven from bamboo and cane, combining sustainability with artistry.',
+    subcategories: [
+      {
+        image: '/images/blue-pottery.jpg',
+        title: 'Blue Pottery',
+        description: 'Delicate and vibrant, blue pottery is an iconic craft of Jaipur.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      },
+      {
+        image: '/images/terracotta.jpg',
+        title: 'Terracotta',
+        description: 'Traditional terracotta pottery known for its earthy charm and utility.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      }
+    ]
   },
   
-  paper: {
-    id: "Paper",
-    name: "Stone Craft",
-    description: "Traditional paper-making and crafting techniques creating beautiful art",
-    image: "https://static.thcdn.com/productimg/960/960/13231897-1064924144952856.jpg",
-    artisanImage: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=600&h=400&fit=crop",
-    states: ["Kashmir", "Rajasthan", "Uttar Pradesh", "Karnataka", "Tamil Nadu", "Kerala", "West Bengal"],
-    history: "Paper craft in India has ancient origins with the art of paper-making arriving through trade routes. Kashmir's papier-mâché work and Rajasthan's handmade paper industry have made significant contributions to this craft. The tradition includes everything from religious manuscripts to decorative items and toys.",
-    materials: [
-      "Recycled paper and pulp",
-      "Natural fibers (cotton, jute)",
-      "Water and binding agents",
-      "Natural dyes and pigments",
-      "Brushes and rollers",
-      "Screens and molds",
-      "Cutting and folding tools"
-    ],
-    process: [
-      "Collection and sorting of raw materials",
-      "Pulp preparation and cleaning",
-      "Sheet formation using molds",
-      "Pressing and drying",
-      "Surface treatment and smoothing",
-      "Decoration and painting",
-      "Cutting and shaping",
-      "Final finishing and packaging"
-    ],
-    culturalValue: "Paper craft in India is closely linked to knowledge preservation and artistic expression. Ancient manuscripts, religious texts, and folk art have been created on handmade paper. The craft promotes recycling and environmental consciousness while providing livelihood to artisan communities. It represents the fusion of utility and beauty.",
-    icon: "📜"
-  },
   stone: {
-    id: "stone",
+    id: "Stone",
     name: "Stone Craft",
-    description: "Traditional paper-making and crafting techniques creating beautiful art",
     image: "https://static.thcdn.com/productimg/960/960/13231897-1064924144952856.jpg",
-    artisanImage: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?w=600&h=400&fit=crop",
     states: ["Kashmir", "Rajasthan", "Uttar Pradesh", "Karnataka", "Tamil Nadu", "Kerala", "West Bengal"],
-    history: "Paper craft in India has ancient origins with the art of paper-making arriving through trade routes. Kashmir's papier-mâché work and Rajasthan's handmade paper industry have made significant contributions to this craft. The tradition includes everything from religious manuscripts to decorative items and toys.",
-    materials: [
-      "Recycled paper and pulp",
-      "Natural fibers (cotton, jute)",
-      "Water and binding agents",
-      "Natural dyes and pigments",
-      "Brushes and rollers",
-      "Screens and molds",
-      "Cutting and folding tools"
-    ],
-    process: [
-      "Collection and sorting of raw materials",
-      "Pulp preparation and cleaning",
-      "Sheet formation using molds",
-      "Pressing and drying",
-      "Surface treatment and smoothing",
-      "Decoration and painting",
-      "Cutting and shaping",
-      "Final finishing and packaging"
-    ],
-    culturalValue: "Paper craft in India is closely linked to knowledge preservation and artistic expression. Ancient manuscripts, religious texts, and folk art have been created on handmade paper. The craft promotes recycling and environmental consciousness while providing livelihood to artisan communities. It represents the fusion of utility and beauty.",
-    icon: "📜"
+    icon: "📜",
+    description: 'Detailed sculptures and decor carved from stone, reflecting architectural and spiritual traditions.',
+    subcategories: [
+      {
+        image: '/images/blue-pottery.jpg',
+        title: 'Blue Pottery',
+        description: 'Delicate and vibrant, blue pottery is an iconic craft of Jaipur.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      },
+      {
+        image: '/images/terracotta.jpg',
+        title: 'Terracotta',
+        description: 'Traditional terracotta pottery known for its earthy charm and utility.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      }
+    ]
+  },
+  leather: {
+    id: "Leather",
+    name: "Leather Craft",
+    image: "https://i0.wp.com/news.jugaadin.com/wp-content/uploads/2020/12/Camel-leather-handicrafts.jpg?ssl=1",
+    states: ["Kashmir", "Rajasthan", "Uttar Pradesh", "Karnataka", "Tamil Nadu", "Kerala", "West Bengal"],
+    icon: "📜",
+    description: 'Durable and artistic leather goods, from accessories to decorative items.',
+    subcategories: [
+      {
+        image: '/images/blue-pottery.jpg',
+        title: 'Blue Pottery',
+        description: 'Delicate and vibrant, blue pottery is an iconic craft of Jaipur.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      },
+      {
+        image: '/images/terracotta.jpg',
+        title: 'Terracotta',
+        description: 'Traditional terracotta pottery known for its earthy charm and utility.',
+        history: "",
+        materials: [],
+        process: [],
+        culturalValue: ""
+      }
+    ]
   }
   
 };

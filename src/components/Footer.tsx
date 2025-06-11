@@ -18,7 +18,7 @@ const Footer = () => {
                 <p className="text-sm font-devanagari">Hasthakala Bharat</p>
               </div>
             </div>
-            <p className="text-white/80 font-devanagari mb-4">
+            <p className="text-white/80 font-devanagari mb-5">
               Preserving India's rich handicraft heritage and supporting artisan communities 
               across the nation. Join us in celebrating traditional craftsmanship.
             </p>
@@ -40,13 +40,13 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-garamond text-lg font-bold mb-4">Quick Links</h4>
+            <h4 className="font-garamond text-lg font-bold mb-4"></h4>
             <ul className="space-y-2 font-devanagari">
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Artisan Stories</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Craft Workshops</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Cultural Events</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Support Artisans</a></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
             </ul>
           </div>
 

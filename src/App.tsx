@@ -10,6 +10,8 @@ import CraftCategory from "./pages/CraftCategory";
 import NotFound from "./pages/NotFound";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CreateAccount from './pages/CreateAccount';
+import SubCategoryDetail from "./pages/SubCategoryDetail";
+import Footer from "./components/Footer";
 
 
 const queryClient = new QueryClient();
@@ -26,7 +28,7 @@ const App = () => (
           <Route path="/homepage" element={<Homepage />} />
           <Route path="/create-account" element={<CreateAccount />} />
           <Route path="/craft/:category" element={<CraftCategory />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/category/:category/:subcategory" element={<SubCategoryDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
