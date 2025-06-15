@@ -63,6 +63,7 @@ const CraftCategory = () => {
                   </Badge>
                 )}
               </div>
+              
             </div>
             
             <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>

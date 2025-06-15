@@ -1,5 +1,6 @@
 
 import type { Config } from "tailwindcss";
+import animatePlugin from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -71,7 +72,22 @@ export default {
 				green: {
 					500: '#22c55e',
 					600: '#16a34a'
-				}
+				},
+				 brownCustom: {
+      100: '#F3E5DC',
+      200: '#E1CFC2',
+      300: '#CFB9A8',
+      400: '#AD8F75',
+      500: '#8C6542', // main shade
+      600: '#6F4F33',
+      700: '#523A25',
+      800: '#362517',
+      900: '#1B1009',
+    },
+	 warmbrown: {
+      800: '#9c4221', // a warm brown-orange
+    },
+
 			},
 			fontFamily: {
 				'sans': ['system-ui', 'sans-serif'],
@@ -84,5 +100,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [animatePlugin],
 } satisfies Config;
