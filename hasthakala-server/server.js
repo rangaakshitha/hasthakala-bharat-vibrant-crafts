@@ -1,13 +1,18 @@
+// server.js
 import express from 'express';
 import cors from 'cors';
 import sqlite3 from 'sqlite3';
+import dotenv from 'dotenv';
+import chatRoute from './routes/chat.js'; // ✅ ESM-style import
+
+dotenv.config();
 
 const sqlite = sqlite3.verbose();
 const db = new sqlite.Database('./hasthakala.db', (err) => {
   if (err) {
-    console.error('Error opening database:', err.message);
+    console.error('❌ Error opening database:', err.message);
   } else {
-    console.log('Connected to SQLite database');
+    console.log('✅ Connected to SQLite database');
   }
 });
 
@@ -16,24 +21,33 @@ const PORT = 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Create users table once at server start
-db.run(`CREATE TABLE IF NOT EXISTS users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT UNIQUE,
-  password TEXT
-)`, (err) => {
-  if (err) {
-    console.error('Error creating users table:', err.message);
-  } else {
-    console.log('Users table ready');
+// ✅ Mount AI Chatbot route
+app.use('/chat', chatRoute);
+
+// 🔐 Create users table at startup
+db.run(
+  `CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE,
+    password TEXT
+  )`,
+  (err) => {
+    if (err) {
+      console.error('❌ Error creating users table:', err.message);
+    } else {
+      console.log('✅ Users table is ready');
+    }
   }
-});
+);
 
+// 🔗 Default route
 app.get('/', (req, res) => {
-  res.send('API is working!');
+  res.send('🎉 API is working!');
 });
 
+// 📝 Register endpoint
 app.post('/register', (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
@@ -41,8 +55,7 @@ app.post('/register', (req, res) => {
   }
 
   const query = `INSERT INTO users (username, password) VALUES (?, ?)`;
-
-  db.run(query, [username, password], function(err) {
+  db.run(query, [username, password], function (err) {
     if (err) {
       if (err.message.includes('UNIQUE constraint failed')) {
         return res.status(409).json({ error: 'Username already exists.' });
@@ -53,6 +66,7 @@ app.post('/register', (req, res) => {
   });
 });
 
+// 🔐 Login endpoint
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
@@ -71,17 +85,18 @@ app.post('/login', (req, res) => {
   });
 });
 
+// 🚀 Start server
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
 
-// Graceful shutdown
+// ✅ Graceful shutdown
 process.on('SIGINT', () => {
   db.close((err) => {
     if (err) {
-      console.error(err.message);
+      console.error('❌ Error closing DB connection:', err.message);
     }
-    console.log('Closed the database connection.');
+    console.log('🛑 Closed the database connection.');
     process.exit(0);
   });
 });
