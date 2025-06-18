@@ -12,6 +12,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import CreateAccount from './pages/CreateAccount';
 import SubCategoryDetail from "./pages/SubCategoryDetail";
 import ChatBot from './components/ChatBot';
+import BuyProducts from './pages/BuyProducts';
 
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/create-account" element={<CreateAccount />} />
           <Route path="/craft/:category" element={<CraftCategory />} />
           <Route path="/category/:category/:subcategory" element={<SubCategoryDetail />} />
+          <Route path="/buy-products" element={<BuyProducts />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ChatBot />

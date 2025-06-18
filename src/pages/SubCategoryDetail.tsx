@@ -5,6 +5,8 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Speaker from "@/components/ui/Speaker";
+
 
 const SubCategoryDetail = () => {
   const { category, subcategory } = useParams<{ category: string; subcategory: string }>();
@@ -154,24 +156,32 @@ const SubCategoryDetail = () => {
         <div className="max-w-5xl mx-auto px-4 text-left text-gray-800 space-y-6">
           {activeTab === 'history' && (
             <div>
-              <h2 className="text-xl font-semibold text-saffron-700 mb-2">History & Origin</h2>
-              <p>{subCat.history}</p>
+              <h2 className="text-xl font-semibold text-saffron-700 mb-2">History & Origin 
+                <Speaker text={subCat.history} />
+              </h2>
+              <p>
+                {subCat.history}
+              </p>
             </div>
           )}
          {activeTab === 'process' && (
-          <div className="space-y-6">
-            <h1 className="text-3xl font-semibold text-saffron-700 mb-4">Process:</h1>
-  {subCat.process.map((step, i) => (
-    <div key={i}>
-      <h3 className="text-lg font-semibold text-warmbrown-800">{step.title}</h3>
-      <p className="text-gray-700">{step.description}</p>
-    </div>
-  ))}
-</div>
+  <div className="space-y-6">
+    <h1 className="text-3xl font-semibold text-saffron-700 mb-4">Process:</h1>
 
-
-
+    {subCat.process.map((step, i) => (
+      <div key={i}>
+        <div className="flex items-center gap-2">
+          <h3 className="text-lg font-semibold text-warmbrown-800">
+            {step.title}
+          </h3>
+          <Speaker text={`${step.title}. ${step.description}`} />
+        </div>
+        <p className="text-gray-700">{step.description}</p>
+      </div>
+    ))}
+  </div>
 )}
+
 
 
           {activeTab === 'cluster' && (

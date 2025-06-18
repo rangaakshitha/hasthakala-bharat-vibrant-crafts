@@ -10,6 +10,8 @@ import { craftsData, CraftData } from '@/data/craftsData';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ChatBot from '@/components/ChatBot';
+import Speaker from "@/components/ui/Speaker";
+
 
 const CraftCategory = () => {
   const { category } = useParams<{ category: string }>();
@@ -102,7 +104,11 @@ const CraftCategory = () => {
                 {subCat.title}
               </h2>
               <p className="text-gray-800 text-lg leading-relaxed font-devanagari mb-4">
-                {subCat.description}
+                <p className="text-lg">
+  {subCat.description}
+  <Speaker text={subCat.description} />
+</p>
+
               </p>
               <Button
                 onClick={() =>navigate(`/category/${craft.id}/${subCat.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '')}`)}

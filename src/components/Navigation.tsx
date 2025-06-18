@@ -98,6 +98,15 @@ const Navigation = () => {
             >
               Craft Workshops
             </Button>
+
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => navigate("/buy-products")}
+              className="text-sm capitalize hover:bg-orange-300"
+            >
+              Buy Products
+            </Button>
           </div>
         </div>
       </div>

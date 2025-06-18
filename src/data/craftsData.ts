@@ -76,16 +76,16 @@ export const craftsData: Record<string, CraftData> = {
   }
 ],
         culturalValue: 'Represents a fusion of Persian and Indian art traditions...',
-        clusterLocation: "Jaipur, Rajasthan",
+        clusterLocation: "Molela, Rajsamand District, Rajasthan",
         clusterDetails: {
-            district: 'Saharanpur / Uttar Pradesh',
-            population: '7.05 lakhs (2011)',
-            language: 'Hindi, Urdu',
-            bestTime: 'November to March',
-            stay: 'Local guest houses and hotels available',
-            howToReach: 'Nearest station: Saharanpur Junction',
-            localTravel: 'Cycle rickshaws, auto rickshaws',
-            mustEat: 'Aloo Paratha, Chole Bhature',
+            district: 'Molela, Rajsamand District, Rajasthan',
+            population: 'Molela is a small artisan village with approximately 2,000–3,000 people, many involved in terracotta craft',
+            language: 'Hindi, Rajasthani',
+            bestTime: 'October to March (cool and comfortable climate)',
+            stay: 'Udaipur (around 50 km from Molela)',
+            howToReach: 'Nearest airport and railway station: Udaipur; from there, Molela can be reached by road in about 1.5 hours',
+            localTravel: 'Taxis, buses, and private vehicles from Udaipur to Molela',
+            mustEat: 'Dal Baati Churma, Gatte ki Sabzi, Ghevar',
         }
       },
       {
@@ -153,14 +153,14 @@ export const craftsData: Record<string, CraftData> = {
         ],
         clusterLocation: "Jaipur, Rajasthan",
         clusterDetails: {
-            district: 'Saharanpur / Uttar Pradesh',
-            population: '7.05 lakhs (2011)',
-            language: 'Hindi, Urdu',
-            bestTime: 'November to March',
-            stay: 'Local guest houses and hotels available',
-            howToReach: 'Nearest station: Saharanpur Junction',
-            localTravel: 'Cycle rickshaws, auto rickshaws',
-            mustEat: 'Aloo Paratha, Chole Bhature',
+            district: 'Jaipur, Rajasthan',
+            population: 'Jaipur is a major city with over 3 million people; blue pottery is practiced by a niche artisan community within the city',
+            language: 'Hindi, Rajasthani',
+            bestTime: 'October to March (pleasant weather and peak tourist season)',
+            stay: 'Jaipur city (wide range of hotels from budget to heritage palaces)',
+            howToReach: 'Well-connected by air (Jaipur International Airport), train, and road from major cities like Delhi, Mumbai, and Ahmedabad',
+            localTravel: 'Auto-rickshaws, app-based cabs, local buses, and rental scooters/cars',
+            mustEat: 'Dal Baati Churma, Laal Maas, Ghevar, Pyaz Kachori',
         }
       },
       {
@@ -195,8 +195,17 @@ export const craftsData: Record<string, CraftData> = {
           "https://images.indianexpress.com/2022/06/WhatsApp-Image-2022-06-17-at-2.12.43-PM-4.jpeg?w=630",
           "https://imgs.mongabay.com/wp-content/uploads/sites/30/2024/04/11103823/Banner-Khurja-pottery.jpg"
         ],
-        clusterLocation: "",
-        clusterDetails: undefined
+        clusterLocation: "Khurja, Bulandshahr District, Uttar Pradesh",
+        clusterDetails: {
+            district: 'Khurja, Bulandshahr District, Uttar Pradesh',
+            population: 'Approximately 1.5 lakh (150,000); large artisan community engaged in pottery-making for generations',
+            language: 'Hindi, Urdu',
+            bestTime: 'October to March (cool weather and active pottery production season)',
+            stay: 'Khurja town (basic hotels available) or nearby cities like Bulandshahr or Greater Noida for better accommodations',
+            howToReach: 'Nearest major city: Delhi (around 85 km); well-connected by road and train — regular buses and trains run from Delhi to Khurja',
+            localTravel: 'Cycle rickshaws, auto-rickshaws, and taxis within the town',
+            mustEat: 'Bedmi Puri, Aloo Sabzi, Jalebi, and local sweets from Khurja halwais',
+        }
       },
       {
         image: 'https://www.orangeskies.in/cdn/shop/files/DSC06948.jpg?v=1723744755&width=1946',
@@ -230,8 +239,17 @@ export const craftsData: Record<string, CraftData> = {
           "https://mir-s3-cdn-cf.behance.net/project_modules/1400/f9dec877233903.5c8171f9c8e8d.jpg",
           "https://th.bing.com/th/id/R.db2da6c0c7b85d724392beaa42bd2e27?rik=EK9JKMeWUf13Fg&riu=http%3a%2f%2fwww.folkartopedia.com%2fwp-content%2fuploads%2f2021%2f07%2fBLACK-POTTERY-OF-NIZAMABAD-SOURCE-INTACH.png&ehk=QpRBBu%2bHbtCYs33PUOfsgwy5Ul7YvAiEBTyz30M%2fLsY%3d&risl=&pid=ImgRaw&r=0"
         ],
-        clusterLocation: "",
-        clusterDetails: undefined
+        clusterLocation: "Nizamabad, Uttar Pradesh",
+        clusterDetails: {
+            district: 'Nizamabad, Uttar Pradesh',
+            population: 'Small artisan town with a few thousand residents; black pottery is the main livelihood',
+            language: 'Hindi, Bhojpuri',
+            bestTime: 'November to February',
+            stay: 'Azamgarh (nearest city with hotel options)',
+            howToReach: 'Nearest railway station: Azamgarh; nearest airport: Varanasi (about 100 km away); Nizamabad is well-connected by road',
+            localTravel: 'Auto-rickshaws and shared vehicles between Azamgarh and Nizamabad',
+            mustEat: 'Thekua, Khurma, Poori-Sabzi',
+        }
       },
     ]
   },
@@ -258,8 +276,17 @@ export const craftsData: Record<string, CraftData> = {
           "https://anuna.com/images/eea32189-2115-40eb-832f-8be327e839f0.jpg?1625651947610",
           "https://anuna.com/images/d5135b43-56cc-4bf6-b3ba-700e657395ba.jpg?1625652110227"
         ],
-        clusterLocation: "",
-        clusterDetails: undefined
+        clusterLocation: "Saharanpur, Uttar Pradesh",
+        clusterDetails: {
+            district: 'Saharanpur, Uttar Pradesh',
+            population: 'Large city with over 7 lakh (700,000) people; thousands involved in the wood carving industry',
+            language: 'Hindi, Urdu',
+            bestTime: 'October to March',
+            stay: 'Saharanpur city (variety of hotels and guesthouses available)',
+            howToReach: 'Well-connected by train and road; nearest airport: Dehradun (approx. 90 km away)',
+            localTravel: 'Auto-rickshaws, e-rickshaws, and local taxis within the city',
+            mustEat: 'Nihari, Korma, Sheermal, and local sweets like Balushahi',
+        }
       },
       {
         image: 'https://s7ap1.scene7.com/is/image/incredibleindia/walnut-wood-carvings-craft-hero?qlt=82&ts=1726641491579',
@@ -276,8 +303,17 @@ export const craftsData: Record<string, CraftData> = {
           "https://miro.medium.com/v2/resize:fit:750/format:webp/0*tnGkqxevJPQuZUTZ.jpg",
           "https://miro.medium.com/v2/resize:fit:828/format:webp/0*bZYawqgfEc0VmMcs.jpg"
         ],
-        clusterLocation: "",
-        clusterDetails: undefined
+        clusterLocation: "Srinagar, Jammu & Kashmir",
+        clusterDetails: {
+            district: 'Srinagar, Jammu & Kashmir',
+            population: 'Srinagar is a major city with over 1.2 million people; walnut wood carving is practiced by skilled Kashmiri artisans in specific areas',
+            language: 'Kashmiri, Urdu',
+            bestTime: 'April to October (spring to autumn; ideal for sightseeing and artisan visits)',
+            stay: 'Srinagar (houseboats, hotels, and guesthouses available across all budgets)',
+            howToReach: 'Srinagar has a well-connected airport (Sheikh ul-Alam Airport); road connectivity via Jammu; train service is available up to Jammu or Banihal',
+            localTravel: 'Auto-rickshaws, taxis, and shikaras on Dal Lake for local travel',
+            mustEat: 'Rogan Josh, Yakhni, Dum Aloo, Kahwa, and Noon Chai',
+        }
       },
       {
         image: 'https://www.gitagged.com/wp-content/uploads/2017/12/Bastar-Art-Online-GI-TAGGED-1.jpg',
@@ -295,8 +331,17 @@ export const craftsData: Record<string, CraftData> = {
           "https://th.bing.com/th/id/R.f94db761302db841ff3371c4ef867e97?rik=Kk0ciM%2fZftP3fw&riu=http%3a%2f%2fbungamati.info%2fimages%2fWood_Crafts%2fjay_sambho%2fimgC.jpg&ehk=iSfVAmbCmYbXED2xwKW7Qvvitrsg9DKMnlaxPn1AdIk%3d&risl=&pid=ImgRaw&r=0",
           "https://i.etsystatic.com/8479346/r/il/248ae4/1257918923/il_1140xN.1257918923_35qt.jpg"
         ],
-        clusterLocation: "",
-        clusterDetails: undefined
+        clusterLocation: "Bastar, Chhattisgarh",
+        clusterDetails: {
+            district: 'Bastar, Chhattisgarh',
+            population: 'Bastar is a tribal district with over 1.4 million people; wood carving is done by tribal artisans using traditional methods',
+            language: 'Hindi, Chhattisgarhi, Gondi',
+            bestTime: 'October to February (cool and suitable for visiting tribal regions and craft centers)',
+            stay: 'Jagdalpur (main town in Bastar district; offers hotels and basic stays)',
+            howToReach: 'Nearest airport: Raipur (approx. 300 km); Jagdalpur has a railway station and is also connected by road from Raipur and Visakhapatnam',
+            localTravel: 'Auto-rickshaws, local buses, and hired cabs for rural travel',
+            mustEat: 'Chana Samosa, Faraa, Aamat (tribal stew), and Mahua-based sweets',
+        }
       },
       {
         image: 'https://upload.wikimedia.org/wikipedia/commons/a/a4/Ten_Playing_Cards_%28Ganjifa%29_LACMA_M.2001.210.4.1-.10.jpg',
