@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import animatePlugin from "tailwindcss-animate";
+import lineClamp from "@tailwindcss/line-clamp";
 
 export default {
   darkMode: ["class"],
@@ -63,7 +64,6 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Custom color palette
         orange: {
           500: "#f97316",
           600: "#ea580c",
@@ -77,14 +77,22 @@ export default {
           200: "#E1CFC2",
           300: "#CFB9A8",
           400: "#AD8F75",
-          500: "#8C6542", // main shade
+          500: "#8C6542",
           600: "#6F4F33",
           700: "#523A25",
           800: "#362517",
           900: "#1B1009",
         },
         warmbrown: {
-          800: "#9c4221", // warm brown-orange
+          800: "#9c4221",
+        },
+        saffron: {
+          100: "#FDE9C9",
+          200: "#FCD59F",
+          300: "#FBC275",
+          400: "#FBAF4A",
+          500: "#FA9C20",
+          600: "#DE8100", 
         },
       },
       fontFamily: {
@@ -98,5 +106,5 @@ export default {
       },
     },
   },
-  plugins: [animatePlugin],
+  plugins: [animatePlugin, lineClamp],
 } satisfies Config;

@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import ChatBot from "@/components/ChatBot";
 import { etsyProducts } from "@/data/etsyProducts";
 
-const ITEMS_PER_PAGE = 6;
+const ITEMS_PER_PAGE = 8;
 
 const BuyProducts = () => {
   const [categoryFilter, setCategoryFilter] = useState("All");
@@ -32,62 +32,73 @@ const BuyProducts = () => {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen px-6 py-10 bg-neutral-50">
-        <h1 className="text-4xl font-bold text-center text-orange-700 mb-8">
+      <div className="min-h-screen px-6 py-6 bg-neutral-50">
+        <h1 className="text-4xl font-bold text-center text-orange-700 mb-6">
           Buy Handicrafts Online
         </h1>
 
         {/* Filters */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
-          <select
-            value={categoryFilter}
-            onChange={e => {
-              setCategoryFilter(e.target.value);
-              setCurrentPage(1);
-            }}
-            className="px-4 py-2 border border-gray-300 rounded-md shadow-sm"
-          >
-            {categories.map(cat => (
-              <option key={cat} value={cat}>{cat}</option>
-            ))}
-          </select>
+        <div className="bg-white border border-gray-200 rounded-md shadow-sm px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+            <label className="font-medium text-sm text-gray-700">Filter by Category:</label>
+            <select
+              value={categoryFilter}
+              onChange={e => {
+                setCategoryFilter(e.target.value);
+                setCurrentPage(1);
+              }}
+              className="px-4 py-2 border border-gray-300 rounded-md shadow-sm w-full sm:w-auto"
+            >
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+          </div>
 
-          <select
-            value={sortOption}
-            onChange={e => setSortOption(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-md shadow-sm"
-          >
-            <option value="default">Sort by</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-          </select>
+          <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+            <label className="font-medium text-sm text-gray-700">Sort by:</label>
+            <select
+              value={sortOption}
+              onChange={e => setSortOption(e.target.value)}
+              className="px-4 py-2 border border-gray-300 rounded-md shadow-sm w-full sm:w-auto"
+            >
+              <option value="default">Default</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+            </select>
+          </div>
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-5 sm:grid-cols-5 lg:grid-cols-3 gap-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {paginatedProducts.map(product => (
-            <Card key={product.id} className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 border">
+            <Card
+              key={product.id}
+              className="bg-white rounded-xl border border-gray-200 shadow hover:shadow-lg transition-transform hover:-translate-y-1 duration-300"
+            >
               <CardHeader className="p-0">
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="w-full h-64 object-cover rounded-t-xl"
+                  className="w-full h-52 object-cover rounded-t-xl"
                 />
               </CardHeader>
-              <CardContent className="p-4 flex flex-col justify-between h-[200px]">
+              <CardContent className="p-4 flex flex-col justify-between h-[180px]">
                 <div>
-                  <CardTitle className="text-lg font-semibold text-orange-700 mb-1">
+                  <CardTitle className="text-lg font-semibold text-gray-800 mb-1 truncate">
                     {product.title}
                   </CardTitle>
-                  <p className="text-sm text-gray-600 line-clamp-3">{product.description}</p>
-                  <p className="mt-2 text-lg font-bold text-gray-800">₹{product.price}</p>
+                  <p className="text-sm text-gray-600 mb-2 line-clamp-2">{product.description}</p>
+                  <p className="text-lg font-bold text-orange-700">
+                    ₹{product.price.toLocaleString("en-IN")}
+                  </p>
                 </div>
                 <Button
                   asChild
-                  className="mt-4 w-full bg-orange-600 hover:bg-orange-700 text-white font-medium"
+                  className="mt-3 w-full bg-orange-600 hover:bg-orange-700 text-white text-sm rounded-md"
                 >
                   <a href={product.url} target="_blank" rel="noopener noreferrer">
-                    Buy on Etsy
+                    Buy Now
                   </a>
                 </Button>
               </CardContent>
@@ -96,7 +107,7 @@ const BuyProducts = () => {
         </div>
 
         {/* Pagination */}
-        <div className="mt-10 flex justify-center gap-3 flex-wrap">
+        <div className="mt-8 flex justify-center gap-3 flex-wrap">
           {Array.from({ length: totalPages }).map((_, idx) => (
             <button
               key={idx}

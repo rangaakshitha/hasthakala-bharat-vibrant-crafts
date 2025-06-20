@@ -62,7 +62,7 @@ const Homepage = () => {
               <Button 
                 onClick={handleLogout}
                 variant="outline"
-                className="border-saffron-300 text-saffron-600 hover:bg-saffron-50"
+                className="mb-6 border-saffron-300 text-saffron-600 hover:bg-saffron-100 hover:text-saffron-700 transition-colors"
               >
                 <LogOut className="h-4 w-4 mr-2" />
                 Logout

@@ -13,6 +13,7 @@ import CreateAccount from './pages/CreateAccount';
 import SubCategoryDetail from "./pages/SubCategoryDetail";
 import ChatBot from './components/ChatBot';
 import BuyProducts from './pages/BuyProducts';
+import CraftWorkshops from "./pages/CraftWorkshops";
 
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/create-account" element={<CreateAccount />} />
           <Route path="/craft/:category" element={<CraftCategory />} />
           <Route path="/category/:category/:subcategory" element={<SubCategoryDetail />} />
+          <Route path="/workshops" element={<CraftWorkshops />} />
           <Route path="/buy-products" element={<BuyProducts />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

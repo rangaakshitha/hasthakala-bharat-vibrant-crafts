@@ -7,7 +7,6 @@ import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Speaker from "@/components/ui/Speaker";
 
-
 const SubCategoryDetail = () => {
   const { category, subcategory } = useParams<{ category: string; subcategory: string }>();
   const navigate = useNavigate();
@@ -15,7 +14,7 @@ const SubCategoryDetail = () => {
   const [craft, setCraft] = useState<CraftData | null>(null);
   const [subCat, setSubCat] = useState<SubCategory | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [activeTab, setActiveTab] = useState<'history' | 'process' | 'cluster'>('history');
+  const [activeTab, setActiveTab] = useState<'history' | 'process' | 'cluster' | 'care'>('history');
 
   useEffect(() => {
     const selectedCraft = craftsData[category || ''];
@@ -50,8 +49,6 @@ const SubCategoryDetail = () => {
     setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
-  const clusterDetails = subCat.clusterDetails || {};
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FFF3E0] via-white to-[#E6F4EA]">
       <Navigation />
@@ -60,7 +57,7 @@ const SubCategoryDetail = () => {
         <Button
           onClick={() => navigate(-1)}
           variant="outline"
-          className="mb-6 border-saffron-300 text-saffron-600 hover:bg-saffron-50"
+          className="mb-6 border-saffron-300 text-saffron-600 hover:bg-saffron-100 hover:text-saffron-700 transition-colors"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
           Back
@@ -116,82 +113,58 @@ const SubCategoryDetail = () => {
           )}
         </div>
 
-        {/* Tabs Centered */}
+        {/* Tabs */}
         <div className="w-full flex justify-center mb-10">
           <div className="flex gap-4 border-b border-saffron-400">
-            <button
-              onClick={() => setActiveTab('history')}
-              className={`py-2 px-4 font-semibold ${
-                activeTab === 'history'
-                  ? 'text-saffron-700 border-b-2 border-saffron-600'
-                  : 'text-gray-600'
-              }`}
-            >
-              History
-            </button>
-            <button
-              onClick={() => setActiveTab('process')}
-              className={`py-2 px-4 font-semibold ${
-                activeTab === 'process'
-                  ? 'text-saffron-700 border-b-2 border-saffron-600'
-                  : 'text-gray-600'
-              }`}
-            >
-              Process
-            </button>
-            <button
-              onClick={() => setActiveTab('cluster')}
-              className={`py-2 px-4 font-semibold ${
-                activeTab === 'cluster'
-                  ? 'text-saffron-700 border-b-2 border-saffron-600'
-                  : 'text-gray-600'
-              }`}
-            >
-              Cluster
-            </button>
+            {['history', 'process', 'cluster', 'care'].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab as any)}
+                className={`py-2 px-4 font-semibold ${
+                  activeTab === tab ? 'text-saffron-700 border-b-2 border-saffron-600' : 'text-gray-600'
+                }`}
+              >
+                {tab === 'history' && 'History'}
+                {tab === 'process' && 'Process'}
+                {tab === 'cluster' && 'Cluster'}
+                {tab === 'care' && 'Maintenance & Care'}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Content Left-Aligned */}
+        {/* Content */}
         <div className="max-w-5xl mx-auto px-4 text-left text-gray-800 space-y-6">
           {activeTab === 'history' && (
             <div>
-              <h2 className="text-xl font-semibold text-saffron-700 mb-2">History & Origin 
-                <Speaker text={subCat.history} />
+              <h2 className="text-xl font-semibold text-saffron-700 mb-2">
+                History & Origin <Speaker text={subCat.history} />
               </h2>
-              <p>
-                {subCat.history}
-              </p>
+              <p className="text-justify leading-relaxed text-gray-700">{subCat.history}</p>
             </div>
           )}
-         {activeTab === 'process' && (
-  <div className="space-y-6">
-    <h1 className="text-3xl font-semibold text-saffron-700 mb-4">Process:</h1>
 
-    {subCat.process.map((step, i) => (
-      <div key={i}>
-        <div className="flex items-center gap-2">
-          <h3 className="text-lg font-semibold text-warmbrown-800">
-            {step.title}
-          </h3>
-          <Speaker text={`${step.title}. ${step.description}`} />
-        </div>
-        <p className="text-gray-700">{step.description}</p>
-      </div>
-    ))}
-  </div>
-)}
-
-
+          {activeTab === 'process' && (
+            <div className="space-y-6">
+              <h1 className="text-3xl font-semibold text-saffron-700 mb-4">Process:</h1>
+              {subCat.process.map((step, i) => (
+                <div key={i}>
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-lg font-semibold text-warmbrown-800">{step.title}</h3>
+                    <Speaker text={`${step.title}. ${step.description}`} />
+                  </div>
+                  <p className="text-gray-700">{step.description}</p>
+                </div>
+              ))}
+            </div>
+          )}
 
           {activeTab === 'cluster' && (
             <div>
               <h2 className="text-xl font-semibold text-saffron-700 mb-2">Craft Cluster Location</h2>
               <iframe
                 title="Google Map"
-                src={`https://www.google.com/maps?q=${encodeURIComponent(
-                  subCat.clusterLocation || ''
-                )}&output=embed`}
+                src={`https://www.google.com/maps?q=${encodeURIComponent(subCat.clusterLocation || '')}&output=embed`}
                 className="w-full h-80 rounded-lg border"
                 loading="lazy"
               ></iframe>
@@ -248,6 +221,82 @@ const SubCategoryDetail = () => {
               </div>
             </div>
           )}
+
+          {activeTab === 'care' && (
+  <div className="space-y-10">
+    {/* Title */}
+    <h2 className="text-3xl font-bold text-saffron-700 flex items-center gap-2">
+      🛠️ Maintenance & Care
+    </h2>
+
+    {/* Importance */}
+    <div className="bg-saffron-50 border-l-4 border-saffron-400 shadow-sm p-4 rounded-lg text-gray-800 text-base">
+      <p>{subCat.care?.importance || "Information not available."}</p>
+    </div>
+
+    {/* Do's and Don'ts */}
+    {(subCat.care?.dos?.length || subCat.care?.donts?.length) && (
+      <div>
+        <h3 className="text-2xl font-semibold text-saffron-700 mb-4">🧽 Do's & Don’ts</h3>
+        <div className="grid md:grid-cols-2 gap-6">
+          {/* DO */}
+          <div className="bg-green-50 border border-green-200 p-4 rounded-xl shadow-sm">
+            <h4 className="text-green-700 font-semibold text-lg mb-2">✅ DO</h4>
+            <ul className="list-disc list-inside space-y-2 text-gray-700">
+              {subCat.care.dos.map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          {/* DON'T */}
+          <div className="bg-red-50 border border-red-200 p-4 rounded-xl shadow-sm">
+            <h4 className="text-red-600 font-semibold text-lg mb-2">❌ DON'T</h4>
+            <ul className="list-disc list-inside space-y-2 text-gray-700">
+              {subCat.care.donts.map((item, idx) => (
+                <li key={idx}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* Endangered Info */}
+    {subCat.care?.endangered && (
+      <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-lg shadow-sm">
+        <h3 className="text-xl font-semibold text-yellow-800 mb-2">⚠️ Why It’s Endangered</h3>
+        <p className="text-gray-800">{subCat.care.endangered}</p>
+      </div>
+    )}
+
+    {/* Special Features */}
+    {subCat.care?.special && (
+      <div>
+        <h3 className="text-xl font-semibold text-indigo-700 mb-2">✨ What Makes It Special</h3>
+        <ul className="list-disc list-inside space-y-2 text-gray-800 bg-indigo-50 border border-indigo-100 p-4 rounded-lg shadow-sm">
+          {subCat.care.special.map((item, idx) => (
+            <li key={idx}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    )}
+    {/* Heartfelt Message */}
+    {subCat.care?.message && (
+      <div className="bg-pink-50 border-l-4 border-pink-400 p-4 mt-6 rounded-lg shadow-sm">
+        <h3 className="text-xl font-semibold text-pink-700 mb-2">💖 Why Your Interest Keeps It Alive</h3>
+        <p className="text-gray-800 whitespace-pre-line">{subCat.care.message}</p>
+      </div>
+    )}
+    {/* Note */}
+    {subCat.care?.note && (
+      <div className="bg-gray-100 border-l-4 border-gray-400 p-4 mt-6 rounded text-gray-600 italic shadow-sm">
+        📝 <strong>Note:</strong> {subCat.care.note}
+      </div>
+    )}
+  </div>
+)}
+
+
         </div>
       </section>
 
