@@ -4,6 +4,7 @@ import cors from 'cors';
 import sqlite3 from 'sqlite3';
 import dotenv from 'dotenv';
 import chatRoute from './routes/chat.js'; // ✅ ESM-style import
+import reviewRoute from './routes/reviews.js';
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/api/reviews', reviewRoute);
 
 // ✅ Mount AI Chatbot route
 app.use('/chat', chatRoute);

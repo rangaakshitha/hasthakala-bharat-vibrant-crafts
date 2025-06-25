@@ -107,6 +107,15 @@ const Navigation = () => {
             >
               Buy Products
             </Button>
+            <Button
+              variant={isActive("/reviews") ? "default" : "ghost"}
+              size="sm"
+              onClick={() => navigate("/reviews")}
+              className="text-sm capitalize hover:bg-orange-300"
+            >
+              Reviews
+            </Button>
+
           </div>
         </div>
       </div>
