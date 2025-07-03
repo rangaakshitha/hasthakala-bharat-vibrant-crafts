@@ -129,6 +129,21 @@ const SubCategoryDetail = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FFF3E0] via-white to-[#E6F4EA]">
       <Navigation />
+      {subCat.placardMessage && (
+      <div className="absolute top-[90px] right-4 z-50 w-[180px] sm:w-[200px] md:w-[220px]">
+        <div className="relative">
+          <img
+            src="/images/boy-placard.png"
+            alt="Craft Message"
+            className="w-full object-contain"
+          />
+          <div className="absolute top-[9%] left-[14%] w-[72%] h-[34%] flex items-center justify-center text-[10px] sm:text-xs md:text-sm text-black font-semibold text-center px-1 leading-tight break-words">
+            {subCat.placardMessage}
+          </div>
+        </div>
+      </div>
+    )}
+
 
       <section className="container mx-auto px-4 py-12">
         <Button
@@ -143,7 +158,7 @@ const SubCategoryDetail = () => {
         <h1 className="text-5xl font-extrabold text-saffron-700 mb-6 text-center drop-shadow-sm">
           {subCat.title}
         </h1>
-
+        
         {/* Image Carousel */}
         <div className="relative flex justify-center items-center max-w-6xl mx-auto h-[350px] mb-6 overflow-hidden px-4">
           {images.length > 1 && (

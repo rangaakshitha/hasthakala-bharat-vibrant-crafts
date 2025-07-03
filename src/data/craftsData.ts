@@ -1,4 +1,5 @@
 export interface SubCategory {
+  placardMessage?: string;
   clusterDetails: {
     district: string;
     population: string;
@@ -51,6 +52,7 @@ export const craftsData: Record<string, CraftData> = {
       {
         image: 'https://media.istockphoto.com/id/1135361606/photo/famous-terracotta-handicrafts-of-bishnupur-on-display-for-sale.jpg?s=170667a&w=0&k=20&c=zsfcu-upT-ctMQvUMVA3yk0pQuNyzTsxesHkNuIsXNI=',
         title: 'Terracotta Pottery',
+        placardMessage: "Takes 25 hrs to craft with care!",
         images: [
           "https://webneel.com/daily/sites/default/files/images/daily/05-2020/1-terracotta-sculpture-god-tamilnadu-karuppu-swamy.preview.jpg",
           "https://webneel.com/daily/sites/default/files/images/daily/05-2020/2-terracotta-sculpture-india-mahishasur-laxmi-saraswati.preview.jpg",
