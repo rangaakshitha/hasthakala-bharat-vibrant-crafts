@@ -75,15 +75,6 @@ const Navigation = () => {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => navigate("/about")}
-              className="text-sm capitalize hover:bg-orange-300"
-            >
-              🧑‍🤝‍🧑About Us
-            </Button>
-
-            <Button
-              variant="ghost"
-              size="sm"
               onClick={() => navigate("/workshops")}
               className="text-sm capitalize hover:bg-orange-300"
             >
@@ -105,6 +96,15 @@ const Navigation = () => {
               className="text-sm capitalize hover:bg-orange-300"
             >
               💬Artisians Message
+            </Button>
+
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => navigate("/about")}
+              className="text-sm capitalize hover:bg-orange-300"
+            >
+              🧑‍🤝‍🧑About Us
             </Button>
 
           </div>
