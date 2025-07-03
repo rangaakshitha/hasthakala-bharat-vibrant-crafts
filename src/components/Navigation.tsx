@@ -30,12 +30,12 @@ const Navigation = () => {
           {/* Navigation Menu */}
           <div className="flex items-center space-x-4">
             <Button
-              variant={isActive("/home") ? "default" : "ghost"}
+              variant="ghost"
+              size="sm"
               onClick={() => navigate("/")}
               className="text-sm capitalize hover:bg-orange-300"
             >
-              <Home className="h-4 w-4 mr-2" />
-              Home
+              🏠Home
             </Button>
 
             {/* Categories Dropdown */}
@@ -49,7 +49,7 @@ const Navigation = () => {
                 size="sm"
                 className="flex items-center gap-1 text-sm hover:bg-orange-300"
               >
-                Categories <ChevronDown size={16} />
+                🗂️Categories <ChevronDown size={16} />
               </Button>
 
               <div
@@ -75,19 +75,10 @@ const Navigation = () => {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => navigate("/contact")}
-              className="text-sm capitalize hover:bg-orange-300"
-            >
-              Contact Us
-            </Button>
-
-            <Button
-              variant="ghost"
-              size="sm"
               onClick={() => navigate("/about")}
               className="text-sm capitalize hover:bg-orange-300"
             >
-              About Us
+              🧑‍🤝‍🧑About Us
             </Button>
 
             <Button
@@ -96,7 +87,7 @@ const Navigation = () => {
               onClick={() => navigate("/workshops")}
               className="text-sm capitalize hover:bg-orange-300"
             >
-              Craft Workshops
+              🧑‍🏫Craft Workshops
             </Button>
 
             <Button
@@ -105,7 +96,7 @@ const Navigation = () => {
               onClick={() => navigate("/buy-products")}
               className="text-sm capitalize hover:bg-orange-300"
             >
-              Buy Products
+              🛒Buy Products
             </Button>
             <Button
               variant={isActive("/reviews") ? "default" : "ghost"}
@@ -113,7 +104,7 @@ const Navigation = () => {
               onClick={() => navigate("/reviews")}
               className="text-sm capitalize hover:bg-orange-300"
             >
-              Reviews
+              💬Artisians Message
             </Button>
 
           </div>

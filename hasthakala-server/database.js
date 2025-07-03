@@ -14,15 +14,19 @@ db.exec(`
   );
 `);
 
-// ✅ Create reviews table if it doesn't exist
+// ✅ Create updated reviews table (email, phone added, rating optional)
 db.exec(`
   CREATE TABLE IF NOT EXISTS reviews (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
+    email TEXT,
+    phone TEXT,
     comment TEXT NOT NULL,
-    rating INTEGER NOT NULL,
+    rating INTEGER,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   );
 `);
+
+
 
 export default db;

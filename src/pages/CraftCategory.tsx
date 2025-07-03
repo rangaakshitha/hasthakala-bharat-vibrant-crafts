@@ -59,11 +59,6 @@ const CraftCategory = () => {
                     {state}
                   </Badge>
                 ))}
-                {craft.states.length > 5 && (
-                  <Badge variant="secondary" className="bg-gray-100 text-gray-600">
-                    +{craft.states.length - 5} more
-                  </Badge>
-                )}
               </div>
               
             </div>

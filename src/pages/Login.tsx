@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useToast } from "@/hooks/use-toast";
 import { Eye, EyeOff } from 'lucide-react';
+import { useToast } from "@/hooks/use-toast";
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -43,10 +42,8 @@ const Login = () => {
           description: "Login successful!",
         });
 
-        // Save token for authenticated requests
         localStorage.setItem('hasthakala_token', data.token);
         localStorage.setItem('hasthakala_user', JSON.stringify({ username }));
-
         navigate('/homepage');
       } else {
         toast({
@@ -65,94 +62,114 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-orange-50 flex items-center justify-center px-4">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8 animate-fade-in">
-          <h1 className="font-cinzel text-4xl font-bold text-gradient mb-2">
-            हस्तकला भारत
-          </h1>
-          <h2 className="font-garamond text-2xl text-saffron-600 mb-2">
-            Hasthakala Bharat
-          </h2>
-          <p className="text-gray-600 font-devanagari">
-            Celebrating India's Rich Handicraft Heritage
-          </p>
+    <div
+      className="min-h-screen w-full relative px-4 py-10 flex items-center justify-center"
+      style={{
+        backgroundImage:
+          "url('https://img.pikbest.com/wp/202344/craft-texture-artfully-crafted-handmade-paper-background_9922246.jpg!bw700')",
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      }}
+    >
+      {/* White Overlay */}
+      <div className="absolute inset-0 bg-white/50 z-0" />
+
+      {/* Login Card */}
+      <div className="relative z-10 w-full max-w-6xl h-[90vh] rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row backdrop-blur-lg bg-white/60 border border-orange-100">
+        {/* LEFT SIDE: LOGIN FORM */}
+        <div className="w-full md:w-2/5 flex flex-col justify-center px-8 py-10 bg-white/60">
+          <div className="text-center mb-8 animate-fade-in">
+            <h3 className="font-cinzel text-3xl md:text-6xl font-bold text-gradient mb-6">
+              हस्तकला भारत
+            </h3>
+            <h2 className="font-garamond text-2xl text-orange-600 mb-2">
+              Hasthakala Bharat
+            </h2>
+            <p className="text-gray-600 font-devanagari">
+              Celebrating India's Rich Handicraft Heritage
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="text-sm font-medium text-gray-700">Username</label>
+              <Input
+                type="text"
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              {errors.username && (
+                <p className="text-sm text-red-600 mt-1">{errors.username}</p>
+              )}
+            </div>
+
+            <div>
+              <label className="text-sm font-medium text-gray-700">Password</label>
+              <div className="relative">
+                <Input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="pr-10"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-2.5 text-gray-500"
+                  aria-label="Toggle password visibility"
+                >
+                  {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                </button>
+              </div>
+              {errors.password && (
+                <p className="text-sm text-red-600 mt-1">{errors.password}</p>
+              )}
+            </div>
+
+            <div className="flex items-center justify-between text-sm">
+              <label className="flex items-center space-x-2 text-gray-700">
+                <input
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  className="accent-orange-500"
+                />
+                <span>Remember me</span>
+              </label>
+              <Link to="/forgot-password" className="text-orange-600 hover:underline">
+                Forgot?
+              </Link>
+            </div>
+
+            <Button
+              type="submit"
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold rounded-full py-2"
+            >
+              Login
+            </Button>
+
+            <p className="text-sm text-center text-gray-600 mt-2">
+              Don’t have an account?{' '}
+              <Link to="/create-account" className="text-orange-600 hover:underline">
+                Create one
+              </Link>
+            </p>
+          </form>
         </div>
 
-        <Card>
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl text-gray-800">Login to Continue</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Username</label>
-                <Input
-                  type="text"
-                  placeholder="Enter your username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-                {errors.username && (
-                  <p className="text-sm text-red-600 mt-1">{errors.username}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Password</label>
-                <div className="relative">
-                  <Input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter your password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="pr-10"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-2 top-2 text-gray-500"
-                    aria-label="Toggle password visibility"
-                  >
-                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                  </button>
-                </div>
-                {errors.password && (
-                  <p className="text-sm text-red-600 mt-1">{errors.password}</p>
-                )}
-              </div>
-
-              <div className="flex items-center justify-between">
-                <label className="flex items-center space-x-2 text-sm text-gray-700">
-                  <input
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
-                    className="accent-orange-500"
-                  />
-                  <span>Remember me</span>
-                </label>
-              
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white"
-              >
-                Login
-              </Button>
-
-              <div className="text-center text-sm mt-4">
-                <p>
-                  Don't have an account?{' '}
-                  <Link to="/create-account" className="text-orange-600 hover:underline">
-                    Create one
-                  </Link>
-                </p>
-              </div>
-            </form>
-          </CardContent>
-        </Card>
+        {/* RIGHT SIDE: IMAGE CARD */}
+        <div className="hidden md:flex w-full md:w-3/5 items-center justify-center p-6 bg-white/80">
+          <div className="w-full h-full rounded-2xl overflow-hidden shadow-lg">
+            <img
+              src="https://thebusinessrule.com/wp-content/uploads/2023/02/Handicraft-2-1.jpg"
+              alt="Handicraft Art"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -182,9 +182,9 @@ export const craftsData: Record<string, CraftData> = {
         ],
 
         images: [
-          "https://i.pinimg.com/originals/7a/2f/c0/7a2fc0ef123d78ca940b2992db4efa4d.jpg",
+          "https://tse4.mm.bing.net/th/id/OIP.z6FHgaUSqQzePqWk-OykEQHaFj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
           "https://hindikrafts.com/wp-content/uploads/2020/09/1200px-Cobalt_Blue_Pottery_4782042700.jpg",
-          "https://i.pinimg.com/originals/87/1e/19/871e191d121dce470345e0f6b111faf0.jpg",
+          "https://i.etsystatic.com/8692802/r/il/a8c0f7/3241421742/il_fullxfull.3241421742_r3ee.jpg",
           "https://www.bluerosepottery.com/mm5/graphics/00000001/category_home-decor.jpg",
           "https://live.staticflickr.com/803/40174260754_e2cf257799_b.jpg",
           "https://gaatha.org/wp-content/uploads/usage_2-47-768x445.jpg",

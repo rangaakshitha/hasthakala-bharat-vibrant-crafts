@@ -7,6 +7,16 @@ import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Speaker from "@/components/ui/Speaker";
 
+const recommendationsData: Record<string, string[]> = {
+  "Clay & Pottery": ["Teracotta Pottery", "Blue Pottery", "Khurja Pottery", "Black Pottery"],
+  "Wood craft": ["Saharanpur wood carving", "Kashmir walnut wood carving", "Bastan wooden craft", "Ganjifa wooden craft", "Sandook boxes"],
+  "Metal Craft": ["Thatheras metal Craft", "Dhokra", "Bidriware", "Kansa Utensils", "Tarakasi", "Brass ware"],
+  "Bamboo & Cane": ["Jappi", "Shital pati", "Khasi trap"],
+  "Stone & Marble": ["Marble Inlay", "Pashan Kala", "Khajuraho", "Kalinga"],
+  "Natural Fibre": ["Ghazipur Wall Hangings", "Kathputlis", "Madur Kathi Mat Weaving", "Pipli Applique Work"]
+};
+
+
 const SubCategoryDetail = () => {
   const { category, subcategory } = useParams<{ category: string; subcategory: string }>();
   const navigate = useNavigate();
@@ -48,6 +58,73 @@ const SubCategoryDetail = () => {
   const handleNextImage = () => {
     setCurrentImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
+
+ const renderRecommendations = () => {
+  if (!craft || !subCat) return null;
+
+  const matchingCategoryKey = Object.keys(recommendationsData).find(
+    key => key.toLowerCase() === craft.name.toLowerCase()
+  );
+
+  const recommendedTitles = matchingCategoryKey
+    ? recommendationsData[matchingCategoryKey].filter(title => title !== subCat.title)
+    : [];
+
+  // Collect all matching subcategories
+  const allRecommendations: {
+    title: string;
+    image: string;
+    categorySlug: string;
+    subSlug: string;
+  }[] = [];
+
+  Object.entries(craftsData).forEach(([catKey, craftObj]) => {
+    craftObj.subcategories.forEach(sub => {
+      if (recommendedTitles.includes(sub.title)) {
+        allRecommendations.push({
+          title: sub.title,
+          image: sub.image,
+          categorySlug: catKey,
+          subSlug: sub.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, ''),
+        });
+      }
+    });
+  });
+
+  // Shuffle the recommendations
+  const shuffled = allRecommendations.sort(() => 0.5 - Math.random());
+  const topThree = shuffled.slice(0, 3);
+
+  if (topThree.length === 0) return null;
+
+  return (
+    <div className="max-w-6xl mx-auto px-4 pt-12 pb-20">
+      <h2 className="text-3xl font-bold text-saffron-700 mb-6 text-center drop-shadow">Recommended for You</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {topThree.map((rec, idx) => (
+          <div
+            key={idx}
+            onClick={() => navigate(`/category/${rec.categorySlug}/${rec.subSlug}`)}
+            className="cursor-pointer bg-white border border-saffron-200 rounded-xl shadow hover:shadow-lg transition-transform duration-200 hover:-translate-y-1"
+          >
+            <img
+              src={rec.image}
+              alt={rec.title}
+              className="w-full h-48 object-cover rounded-t-xl"
+            />
+            <div className="p-4">
+              <h3 className="text-lg font-semibold text-saffron-800 mb-2">{rec.title}</h3>
+              <p className="text-sm text-gray-600">Discover more about the beauty of {rec.title} crafts in India.</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#FFF3E0] via-white to-[#E6F4EA]">
@@ -299,7 +376,8 @@ const SubCategoryDetail = () => {
 
         </div>
       </section>
-
+      {/* Personalized Recommendations */}
+      {renderRecommendations()}
       <Footer />
     </div>
   );

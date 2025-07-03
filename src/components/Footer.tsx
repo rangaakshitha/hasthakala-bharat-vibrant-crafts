@@ -55,10 +55,11 @@ const Footer = () => {
             <h4 className="font-garamond text-lg font-bold mb-4">Craft Categories</h4>
             <ul className="space-y-2 font-devanagari">
               <li><a href="#" className="text-white/80 hover:text-white transition-colors">🏺 Clay & Pottery</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">🪵 Woodcraft</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">🪵 Wood craft</a></li>
               <li><a href="#" className="text-white/80 hover:text-white transition-colors">⚱️ Metal Craft</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">🎋 Bamboo Craft</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">📜 Paper Craft</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">🎋 Bamboo & Cane</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">🪨Stone & Marble</a></li>
+              <li><a href="#" className="text-white/80 hover:text-white transition-colors">🌾Natural Fibre</a></li>
             </ul>
           </div>
 
@@ -76,23 +77,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4" />
-                <span className="text-white/80">New Delhi, India</span>
+                <span className="text-white/80">Hyderabad, India</span>
               </div>
             </div>
 
-            {/* Newsletter */}
-            <div className="mt-6">
-              <h5 className="font-medium mb-2 font-devanagari">Stay Updated</h5>
-              <div className="flex space-x-2">
-                <Input 
-                  placeholder="Your email..."
-                  className="bg-white/20 border-white/30 text-white placeholder:text-white/70 text-sm"
-                />
-                <Button size="sm" className="bg-saffron-500 hover:bg-saffron-600">
-                  Subscribe
-                </Button>
-              </div>
-            </div>
+          
           </div>
         </div>
       </div>
@@ -102,7 +91,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-white/80 font-devanagari text-sm">
-              © 2024 Hasthakala Bharat. All rights reserved. Proudly preserving Indian heritage.
+              © 2025 Hasthakala Bharat. All rights reserved. Proudly preserving Indian heritage.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-white/80 hover:text-white text-sm transition-colors">Privacy Policy</a>

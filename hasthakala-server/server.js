@@ -3,8 +3,10 @@ import express from 'express';
 import cors from 'cors';
 import sqlite3 from 'sqlite3';
 import dotenv from 'dotenv';
-import chatRoute from './routes/chat.js'; // ✅ ESM-style import
-import reviewRoute from './routes/reviews.js';
+import chatRoute from './routes/chat.js'; // ✅ AI chatbot
+import reviewRoute from './routes/reviews.js'; // ✅ Reviews route (updated)
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 dotenv.config();
 
@@ -23,12 +25,12 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api/reviews', reviewRoute);
 
-// ✅ Mount AI Chatbot route
+// ✅ Mount Routes
+app.use('/api/reviews', reviewRoute); // Handles POST and GET with phone/email/rating
 app.use('/chat', chatRoute);
 
-// 🔐 Create users table at startup
+// ✅ Ensure users table exists
 db.run(
   `CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -44,7 +46,27 @@ db.run(
   }
 );
 
-// 🔗 Default route
+// ✅ Ensure reviews table includes email, phone, optional rating
+db.run(
+  `CREATE TABLE IF NOT EXISTS reviews (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT,
+    phone TEXT,
+    comment TEXT NOT NULL,
+    rating INTEGER,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+  )`,
+  (err) => {
+    if (err) {
+      console.error('❌ Error creating reviews table:', err.message);
+    } else {
+      console.log('✅ Reviews table is ready');
+    }
+  }
+);
+
+// 🔗 Default test route
 app.get('/', (req, res) => {
   res.send('🎉 API is working!');
 });
