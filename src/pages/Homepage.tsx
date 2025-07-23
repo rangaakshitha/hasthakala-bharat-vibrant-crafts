@@ -45,7 +45,7 @@ const Homepage = () => {
   if (!user) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-saffron-50 via-white to-emerald-50">
+    <div className="min-h-screen bg-gradient-to-br from-saffron-50 via-white to-emerald-50 scroll-smooth">
       <Navigation />
 
       {/* Top User Info and Logout */}
@@ -67,55 +67,63 @@ const Homepage = () => {
       </div>
 
       {/* Hero Section */}
-      {/* Hero Section */}
-<section className="relative py-16 mandala-bg">
-  <div className="container mx-auto px-4">
-    <div className="flex flex-col-reverse lg:flex-row items-center justify-between animate-fade-in">
-      
-      {/* Left Side: Centered Text Content */}
-      <div className="lg:w-1/2 flex flex-col justify-center items-center text-center space-y-4">
-        <h1 className="font-cinzel text-5xl md:text-6xl font-bold text-gradient">
-          हस्तकला भारत
-        </h1>
-        <h2 className="font-garamond text-3xl md:text-4xl text-saffron-700">
-          Hasthakala Bharat
-        </h2>
-        <p className="text-xl text-gray-700 max-w-2xl font-devanagari leading-relaxed">
-          Discover the timeless beauty of Indian handicrafts. From ancient pottery traditions
-          to intricate woodwork, explore the rich heritage that has been passed down through
-          generations of skilled artisans.
-        </p>
+      <section className="relative py-16 pb-2 mandala-bg">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col-reverse lg:flex-row items-center justify-between animate-fade-in">
+            
+            {/* Left Side */}
+            <div className="lg:w-1/2 flex flex-col justify-center items-center text-center space-y-4">
+              <h1 className="font-cinzel text-5xl md:text-6xl font-bold text-gradient">
+                हस्तकला भारत
+              </h1>
+              <h2 className="font-garamond text-3xl md:text-4xl text-saffron-700">
+                Hasthakala Bharat
+              </h2>
+              <p className="text-xl text-gray-700 max-w-2xl font-devanagari leading-relaxed">
+                Discover the timeless beauty of Indian handicrafts. From ancient pottery traditions
+                to intricate woodwork, explore the rich heritage that has been passed down through
+                generations of skilled artisans.
+              </p>
 
-        {/* Search Bar */}
-        <div className="max-w-md w-full">
-          <div className="relative">
-            <Search className="absolute left-3 top-3 h-5 w-5 text-saffron-500" />
-            <Input
-              type="text"
-              placeholder="Search crafts, states, or materials..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10 py-6 text-lg border-saffron-200 focus:border-saffron-500"
-            />
+              {/* Search Bar */}
+              <div className="max-w-md w-full">
+                <div className="relative">
+                  <Search className="absolute left-3 top-3 h-5 w-5 text-saffron-500" />
+                  <Input
+                    type="text"
+                    placeholder="Search crafts, states, or materials..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 py-6 text-lg border-saffron-200 focus:border-saffron-500"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Right Side */}
+            <div className="lg:w-1/2 mb-10 lg:mb-0 flex justify-center">
+              <img
+                src="https://www.pngplay.com/wp-content/uploads/7/Handicraft-Transparent-Image.png"
+                alt="Pottery Artisan"
+                className="object-contain w-full max-w-xl h-auto"
+              />
+            </div>
+          </div>
+
+          {/* Down Arrow positioned at bottom center of section */}
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+            <a
+              href="#craft-categories"
+              className="text-3xl animate-bounce hover:scale-110 transition-transform duration-300"
+            >
+              ⮟
+            </a>
           </div>
         </div>
-      </div>
-
-      {/* Right Side: Bigger Image with No Rounded Corners */}
-      <div className="lg:w-1/2 mb-10 lg:mb-0 flex justify-center">
-        <img
-          src="https://www.pngplay.com/wp-content/uploads/7/Handicraft-Transparent-Image.png"
-          alt="Pottery Artisan"
-          className="object-contain w-full max-w-xl h-auto"
-        />
-      </div>
-
-    </div>
-  </div>
-</section>
+      </section>
 
       {/* Craft Categories */}
-      <section className="py-16">
+      <section id="craft-categories" className="pt-10 py-20 scroll-mt-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">
             Craft Categories
