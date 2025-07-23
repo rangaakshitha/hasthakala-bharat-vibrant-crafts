@@ -1,54 +1,60 @@
-// ReviewList.tsx
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 interface Review {
   id: number;
   name: string;
-  email?: string;
-  phone?: string;
+  email: string;
+  phone: string;
   comment: string;
-  rating?: number;
-  created_at: string;
+  rating: number | null;
+  created_at?: string;
 }
 
-const ReviewList: React.FC = () => {
+interface ReviewListProps {
+  refreshTrigger: boolean;
+}
+
+const ReviewList: React.FC<ReviewListProps> = ({ refreshTrigger }) => {
   const [reviews, setReviews] = useState<Review[]>([]);
 
   const fetchReviews = async () => {
-    const res = await axios.get("http://localhost:5000/api/reviews");
-    setReviews(res.data);
+    try {
+      const res = await axios.get('http://localhost:5000/api/reviews');
+      setReviews(res.data);
+    } catch (err) {
+      console.error('❌ Failed to load reviews:', err);
+    }
   };
 
   useEffect(() => {
     fetchReviews();
-  }, []);
+  }, [refreshTrigger]);
 
   return (
-    <div className="mt-6 space-y-4">
-      <h2 className="text-xl font-bold">Recent Reviews</h2>
-      {reviews.map(r => (
-        <div key={r.id} className="bg-gray-100 p-4 rounded shadow">
-          <div className="flex justify-between">
-            <div>
-              <strong>{r.name}</strong>
-              {(r.email || r.phone) && (
-                <div className="text-xs text-gray-600">
-                  {r.email && <div>Email: {r.email}</div>}
-                  {r.phone && <div>Phone: {r.phone}</div>}
-                </div>
+    <div className="mt-10">
+      <h2 className="text-xl font-semibold mb-4 text-brown-700">All Reviews</h2>
+      {reviews.length === 0 ? (
+        <p className="text-gray-600">No reviews yet.</p>
+      ) : (
+        <div className="space-y-4">
+          {reviews.map(review => (
+            <div
+              key={review.id}
+              className="border border-gray-300 p-4 rounded-lg bg-orange-50 shadow-sm"
+            >
+              <p><strong>Name:</strong> {review.name}</p>
+              <p><strong>Email:</strong> {review.email}</p>
+              <p><strong>Phone:</strong> {review.phone}</p>
+              <p><strong>Comment:</strong> {review.comment}</p>
+              <p><strong>Rating:</strong> {review.rating ?? 'N/A'}</p>
+              {review.created_at && (
+                <p className="text-xs text-gray-500 mt-1">Submitted on: {review.created_at}</p>
               )}
             </div>
-            {r.rating ? (
-              <span className="text-yellow-500">{"\u2B50".repeat(r.rating)}</span>
-            ) : (
-              <span className="text-gray-400 text-sm italic">No Rating</span>
-            )}
-          </div>
-          <p>{r.comment}</p>
-          <small className="text-gray-500">{new Date(r.created_at).toLocaleString()}</small>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   );
 };

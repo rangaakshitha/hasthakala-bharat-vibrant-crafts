@@ -14,6 +14,7 @@ import ChatBot from './components/ChatBot';
 import BuyProducts from './pages/BuyProducts';
 import CraftWorkshops from "./pages/CraftWorkshops";
 import ReviewsPage from "./pages/Reviews";
+import AboutUs from "./pages/AboutUs";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const AppWrapper = () => {
         <Route path="/workshops" element={<CraftWorkshops />} />
         <Route path="/buy-products" element={<BuyProducts />} />
         <Route path="/reviews" element={<ReviewsPage />} />
+        <Route path="/about-us" element={<AboutUs />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 

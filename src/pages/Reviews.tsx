@@ -11,14 +11,15 @@ const ReviewsPage: React.FC = () => {
   return (
     <>
       <Navigation />
-      
+
       <div className="min-h-screen bg-orange-50 py-10 px-4">
-        <div className="max-w-3xl mx-auto bg-white bg-opacity-80 rounded-lg shadow-md p-8">
-          <h1 className="text-3xl font-bold mb-6 text-center text-warmbrown-900">
-            Artisans Message
+        <div className="max-w-3xl mx-auto bg-white bg-opacity-90 rounded-lg shadow-md p-8">
+          <h1 className="text-3xl font-bold mb-6 text-center text-orange-700">
+            Artisans' Messages
           </h1>
+
           <ReviewForm onNewReview={() => setRefresh(!refresh)} />
-          <ReviewList key={String(refresh)} />
+          <ReviewList refreshTrigger={refresh} />
         </div>
       </div>
 

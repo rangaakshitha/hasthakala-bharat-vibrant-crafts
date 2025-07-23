@@ -1,66 +1,107 @@
-// ReviewForm.tsx
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import axios from 'axios';
 
-const ReviewForm: React.FC<{ onNewReview: () => void }> = ({ onNewReview }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [comment, setComment] = useState("");
-  const [rating, setRating] = useState<number | null>(null);
+interface ReviewFormProps {
+  onNewReview?: () => void;
+}
+
+const ReviewForm: React.FC<ReviewFormProps> = ({ onNewReview }) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [comment, setComment] = useState('');
+  const [rating, setRating] = useState<number | ''>('');
+  const [message, setMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const reviewData: any = { name, email, phone, comment };
-    if (rating !== null) reviewData.rating = rating;
 
-    await axios.post("http://localhost:5000/api/reviews", reviewData);
-    setName("");
-    setEmail("");
-    setPhone("");
-    setComment("");
-    setRating(null);
-    onNewReview();
+    const reviewData = {
+      name,
+      email,
+      phone,
+      comment,
+      rating: rating === '' ? null : rating,
+    };
+
+    try {
+      const res = await axios.post('http://localhost:5000/api/reviews', reviewData);
+
+      if (res.status === 201) {
+        setMessage('Review submitted successfully!');
+        setName('');
+        setEmail('');
+        setPhone('');
+        setComment('');
+        setRating('');
+
+        onNewReview?.(); // ✅ Trigger refresh in parent
+      } else {
+        setMessage('Unexpected response from server.');
+      }
+    } catch (err) {
+      console.error('❌ Submit failed:', err);
+      setMessage('Something went wrong while submitting.');
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-4 bg-white shadow rounded">
-      <h2 className="text-xl font-semibold">Artisians message/Review</h2>
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <h2 className="text-2xl font-semibold text-center mb-4 text-brown-800">Submit a Review</h2>
+
       <input
-        className="w-full p-2 border"
+        type="text"
         placeholder="Name"
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        required
+        onChange={e => setName(e.target.value)}
+        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300"
       />
+
       <input
-        className="w-full p-2 border"
+        type="email"
         placeholder="Email"
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        required
+        onChange={e => setEmail(e.target.value)}
+        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300"
       />
+
       <input
-        className="w-full p-2 border"
+        type="text"
         placeholder="Phone"
         value={phone}
-        onChange={(e) => setPhone(e.target.value)}
+        required
+        onChange={e => setPhone(e.target.value)}
+        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300"
       />
+
       <textarea
-        className="w-full p-2 border"
-        placeholder="Your Message"
+        placeholder="Message / Comment"
         value={comment}
-        onChange={(e) => setComment(e.target.value)}
+        required
+        onChange={e => setComment(e.target.value)}
+        className="w-full px-4 py-2 border rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-orange-300"
       />
-      <select
-        className="w-full p-2 border text-gray-600"
-        value={rating ?? ''}
-        onChange={(e) => setRating(e.target.value ? +e.target.value : null)}
+
+      <input
+        type="number"
+        placeholder="Rating (optional)"
+        min="1"
+        max="5"
+        value={rating}
+        onChange={e => setRating(e.target.value === '' ? '' : Number(e.target.value))}
+        className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-300"
+      />
+
+      <button
+        type="submit"
+        className="w-full bg-orange-500 text-white font-semibold py-2 rounded-lg hover:bg-orange-600 transition"
       >
-        <option value="">Give a rating (optional)</option>
-        {[5, 4, 3, 2, 1].map((r) => (
-          <option key={r} value={r}>{r} Star{r > 1 && 's'}</option>
-        ))}
-      </select>
-      <button className="bg-saffron-600 text-white px-4 py-2 rounded" type="submit">Submit</button>
+        Submit
+      </button>
+
+      {message && <p className="text-center text-green-600 font-medium mt-2">{message}</p>}
     </form>
   );
 };

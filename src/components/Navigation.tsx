@@ -101,7 +101,7 @@ const Navigation = () => {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => navigate("/about")}
+              onClick={() => navigate("/about-us")}
               className="text-sm capitalize hover:bg-orange-300"
             >
               🧑‍🤝‍🧑About Us
