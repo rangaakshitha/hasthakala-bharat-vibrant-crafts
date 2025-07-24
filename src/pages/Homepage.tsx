@@ -116,7 +116,7 @@ const Homepage = () => {
               href="#craft-categories"
               className="text-3xl animate-bounce hover:scale-110 transition-transform duration-300"
             >
-              ⮟
+              🢃 
             </a>
           </div>
         </div>
